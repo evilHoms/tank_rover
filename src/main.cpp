@@ -1,9 +1,12 @@
 #include <Arduino.h>
 #include "RF24Service.h"
+#include "DataStorage.h"
+#include "Motors.h"
 
 // Remove, when built for production
 #define SHOW_DEBUG
 
+DataStorage dataStorage;
 RF24Service radio(10, 9);
 byte request[8];
 
@@ -33,6 +36,7 @@ void loop() {
 
   if (!isNoData) {
     // #todo map nrf data
+    dataStorage.mapByteData(request);
 
     // #todo pass mapped data to motors
 
